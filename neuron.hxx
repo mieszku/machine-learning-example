@@ -1,3 +1,8 @@
+/*
+ * Created by Mieszko Mazurek <mimaz@gmx.com>
+ * April 2017
+ */
+
 #ifndef __neuron_hxx__
 #define __neuron_hxx__
 
@@ -68,15 +73,20 @@ namespace ml
 							shared_weight  __weight);
 
 		void recalculate();
+		void update_output_gradient(value_type __target);
+		void update_gradient();
+		void update_weights();
 
 		neural_net  *get_net() const { return _M_net; }
 		type 		 get_type() const { return _M_type; }
 		value_type  &value() { return _M_value; }
+		value_type	&gradient() { return _M_gradient; }
 		
 	private:
 		neural_net 	  	 *const _M_net;
 		const type			 	_M_type;
 		value_type 			 	_M_value;
+		value_type				_M_gradient;
 		std::vector<connection>	_M_inputs;
 		std::vector<connection> _M_outputs;
 	};
